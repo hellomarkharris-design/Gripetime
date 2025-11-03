@@ -1,259 +1,350 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Gripetime Head‑to‑Head (Stage 1)</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gripetime</title>
 <style>
-  :root{--purple:#6b4eff;--dark:#171233;--light:#f7f7ff;--edge:#e9e9f6;--green:#18a558;--yellow:#f1c40f;--red:#e74c3c}
-  body{margin:0;background:#f5f6fb;color:#111;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
-  .wrap{max-width:1100px;margin:0 auto;padding:16px}
-  .card{background:#fff;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.06);padding:16px;margin:12px 0}
-  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-  @media (max-width:760px){.grid{grid-template-columns:1fr}}
-  .h2{font-weight:800;margin:0 0 10px}
-  .label{font-weight:600;margin:10px 0 6px;display:block}
-  .input,.text{width:100%;padding:10px 12px;border:1px solid var(--edge);border-radius:10px;font-size:15px}
-  .btn{background:var(--purple);color:#fff;border:0;padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer}
-  .btn.secondary{background:#eee;color:#111}
-  .dim{opacity:.75;font-size:13px}
-  .main{width:100%;aspect-ratio:16/10;background:var(--light);border:2px dashed #cfcaf7;border-radius:14px;display:flex;align-items:center;justify-content:center;color:var(--purple);font-weight:800}
-  .main img{width:100%;height:100%;object-fit:cover;border-radius:12px}
-  .thumbs{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
-  .thumbs img{width:100px;height:72px;object-fit:cover;border-radius:10px;border:2px solid transparent;cursor:pointer}
-  .thumbs img.sel{border-color:var(--purple)}
-  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-  .bar{display:flex;align-items:center;justify-content:center;gap:12px;margin:8px 0 0}
-  .vs{font-weight:800;color:var(--purple)}
-  .list-title{display:flex;justify-content:space-between;align-items:center}
-  .badge{padding:4px 10px;border-radius:999px;font-size:12px;background:#eee}
-  .badge.green{background:var(--green);color:#fff}
-  .badge.yellow{background:var(--yellow);color:#000}
-  .badge.red{background:var(--red);color:#fff}
-  .item{padding:12px;border:1px solid var(--edge);border-radius:12px;margin-top:10px;background:#fff}
-  .link{color:var(--purple);text-decoration:none;font-weight:700;cursor:pointer}
-  .spacer{height:6px}
-  .title{font-weight:800;font-size:18px}
+  :root { --brand:#6b3fd6; --ink:#111; --muted:#666; --bg:#fff; }
+  *{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);}
+  header{border-bottom:1px solid #eee; padding:10px 16px; position:sticky;top:0;background:#fff;z-index:10}
+  nav a{margin-right:14px;text-decoration:none;color:var(--ink);font-weight:600}
+  nav a.active{color:var(--brand)}
+  .wrap{max-width:980px;margin:0 auto;padding:20px}
+  .center{text-align:center}
+  .card{border:1px solid #e9e9e9;border-radius:12px;padding:16px;background:#fff}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .btn{background:var(--brand);color:#fff;border:0;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+  input,select,textarea{width:100%;padding:10px;border:1px solid #ddd;border-radius:10px}
+  label{font-size:.9rem;color:var(--muted)}
+  .muted{color:var(--muted)}
+  .age-green{background:#d4f7d4}
+  .age-yellow{background:#fff7cc}
+  .age-red{background:#ffd6d6}
+  .avatar{width:56px;height:56px;border-radius:50%;border:2px solid #ccc;cursor:pointer}
+  .avatar.selected{border-color:var(--brand)}
+  .stars button{border:1px solid #ddd;padding:6px 10px;border-radius:8px;background:#fff;cursor:pointer}
+  .stars .on{background:#ffe08a}
+  footer{border-top:1px solid #eee;padding:20px;margin-top:40px;color:#777}
+  .ad{border:1px dashed #999;padding:12px;border-radius:10px}
+  .hide{display:none}
+  @media(max-width:900px){.grid2{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<!-- Gripetime Logo -->
-<div style="text-align:center; margin:20px 0;">
-  <a href="/" style="display:inline-block;">
-    <img src="gripetime-logo.png" alt="Gripetime Logo" style="height:180px;">
-  </a>
-</div>
-  <div class="wrap">
-    <div class="card">
-      <div class="bar">
-        <span class="dim">Head‑to‑Head</span>
-        <span class="vs">GRIPER</span><span class="dim">vs</span><span class="vs">GRIPEE</span>
-        <span class="dim">• Upload up to 3 photos per side • Max 1000 lines of text</span>
-      </div>
+
+<header class="wrap">
+  <nav>
+    <a href="#/" data-route>Home</a>
+    <a href="#/users" data-route>Users</a>
+    <a href="#/register" data-route>Register</a>
+    <a href="#/gripes" data-route>Gripes</a>
+    <a href="#/rules" data-route>Rules</a>
+    <a href="#/legal" data-route>Legal</a>
+    <a href="#/admin" data-route style="float:right">Admin</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <!-- HOME -->
+  <section id="home">
+    <div class="center">
+      <img src="logo.png" alt="Gripetime Logo" style="height:84px"/>
     </div>
-
-    <div class="card">
-      <div class="grid">
-        <!-- Griper panel -->
-        <div>
-          <div class="h2">Griper</div>
-          <div id="left_main" class="main">Upload up to 3 photos</div>
-          <div class="thumbs" id="left_thumbs"></div>
-
-          <label class="label">Photos (max 3)</label>
-          <input id="left_files" type="file" accept="image/*" multiple class="input">
-
-          <label class="label">Griper Text (up to 1000 lines)</label>
-          <textarea id="left_text" class="text" rows="10" placeholder="Paste or type. Each newline counts as 1 line."></textarea>
-          <div class="dim" id="left_count">0 / 1000 lines</div>
-        </div>
-
-        <!-- Gripee panel -->
-        <div>
-          <div class="h2">Gripee</div>
-          <div id="right_main" class="main">Upload up to 3 photos</div>
-          <div class="thumbs" id="right_thumbs"></div>
-
-          <label class="label">Photos (max 3)</label>
-          <input id="right_files" type="file" accept="image/*" multiple class="input">
-
-          <label class="label">Gripee Text (up to 1000 lines)</label>
-          <textarea id="right_text" class="text" rows="10"></textarea>
-          <div class="dim" id="right_count">0 / 1000 lines</div>
-        </div>
-      </div>
-
-      <div class="row" style="margin-top:12px">
-        <input id="h2h_title" class="input" placeholder="Optional title for this Head‑to‑Head" />
-        <button class="btn" id="save_btn">Save locally</button>
-        <button class="btn secondary" id="clear_btn">Clear</button>
-        <div class="dim">Beginner mode: saves to your browser only (no server required).</div>
-      </div>
+    <div class="center" style="margin-top:16px">
+      <img src="head-to-head.png" alt="Head-to-Head" style="max-width:100%;border-radius:12px"/>
     </div>
-
-    <!-- Saved list -->
-    <div class="card">
-      <div class="list-title">
-        <div class="title">Saved Head‑to‑Heads (local)</div>
-        <div class="dim">Green 1–3d • Yellow 4–5d • Red >5d</div>
-      </div>
-      <div id="saved_list"></div>
+    <div class="ad" style="margin-top:24px">
+      <strong>Advertisement Space</strong>
+      <p class="muted">Admin can update this later.</p>
     </div>
+  </section>
 
-    <!-- Read view -->
-    <div class="card" id="read_view" style="display:none"></div>
-  </div>
+  <!-- USERS -->
+  <section id="users" class="hide">
+    <h1>Gripetime Users</h1>
+    <ul>
+      <li><strong>Griper</strong> — submits a “Gripe” with up to 3 photos or 1 avatar, and up to 1000 words.</li>
+      <li><strong>Gripee</strong> — responds with up to 3 photos or 1 avatar, and up to 1000 words.</li>
+      <li><strong>Voter</strong> — reads Active Gripes, selects 1–5 stars, and clicks Vote for Griper or Gripee (once per gripe).</li>
+      <li><strong>Administrator</strong> — reviews/posts gripes, edits, sets active time, closes gripes, emails voters, updates homepage ads.</li>
+    </ul>
+  </section>
+
+  <!-- REGISTER (simple demo form; not connected yet) -->
+  <section id="register" class="hide">
+    <h1>Register</h1>
+    <div class="card">
+      <form id="regForm">
+        <label>Username</label>
+        <input required id="regUsername" maxlength="60"/>
+        <br/><br/>
+        <label>Email</label>
+        <input required id="regEmail" type="email"/>
+        <br/><br/>
+        <label>Role</label>
+        <select id="regRole">
+          <option>Griper</option>
+          <option>Gripee</option>
+          <option>Voter</option>
+        </select>
+        <br/><br/>
+        <button class="btn">Create Account (demo)</button>
+        <p class="muted" style="margin-top:8px">This prototype stores demo data in your browser only.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- GRIPES LIST -->
+  <section id="gripes" class="hide">
+    <h1>All Gripes</h1>
+    <p class="muted">Any User can review all Gripes. Active = open for votes; Resolved = closed.</p>
+    <ul id="gripesList" style="list-style:none;padding:0"></ul>
+  </section>
+
+  <!-- GRIPE DETAILS + HEAD-TO-HEAD -->
+  <section id="gripe" class="hide">
+    <div id="gripeBox"></div>
+  </section>
+
+  <!-- RULES -->
+  <section id="rules" class="hide">
+    <h1>Rules</h1>
+    <div class="card">
+      <p>
+        Add up to 10,000 words of Rules here. In this simple version, edit the text in <code>index.html</code>.  
+        (Later we can make this editable via an Admin box.)
+      </p>
+    </div>
+  </section>
+
+  <!-- LEGAL -->
+  <section id="legal" class="hide">
+    <h1>Legal Disclaimer</h1>
+    <div class="card">
+      <p><strong>Legal Disclaimer</strong><br/>
+      Gripetime is a public, user-generated discussion platform intended for informal opinion sharing and community voting.
+      It is <em>not</em> a law firm, mediation provider, or professional dispute-resolution service. Nothing on this site constitutes
+      legal or professional advice. By submitting content, you confirm you have the right to share it and that your submissions
+      comply with our Rules. Voting results reflect user opinions only and have no legal effect. If you need legal or mediation
+      services, consult a qualified professional. Using Gripetime means you agree to these Rules and this disclaimer.</p>
+      <p class="muted">You can replace or expand this section later.</p>
+    </div>
+  </section>
+
+  <!-- ADMIN (demo) -->
+  <section id="admin" class="hide">
+    <h1>Administrator (demo)</h1>
+    <div class="card">
+      <p>This simple prototype lets you review the sample gripe and toggle its status.</p>
+      <button class="btn" id="toggleActiveBtn">Toggle Active/Resolved</button>
+      <button class="btn" id="resetVotesBtn" style="margin-left:8px;background:#333">Reset Votes</button>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <small class="muted">© Gripetime</small>
+</footer>
 
 <script>
-(function(){
-  const MAX_FILES = 3;
-  const MAX_LINES = 1000;
-  const el = (id)=>document.getElementById(id);
-  const fmt = (ts)=> new Date(ts).toLocaleString();
+/* -------------- Tiny Router -------------- */
+const routes = ["home","users","register","gripes","gripe","rules","legal","admin"];
+function show(id){
+  routes.forEach(r=>document.getElementById(r).classList.add("hide"));
+  document.getElementById(id).classList.remove("hide");
+  document.querySelectorAll('[data-route]').forEach(a=>{
+    const is = a.getAttribute('href') === location.hash;
+    a.classList.toggle('active', is);
+  });
+}
+function go(hash){ location.hash = hash; }
+if(!location.hash) go("#/"); // default
+window.addEventListener("hashchange", ()=>{
+  const h = location.hash.replace("#/","") || "";
+  if(h.startsWith("gripe/")) { renderGripe(h.split("/")[1]); return; }
+  show(h || "home");
+});
 
-  const ageBadge = (ts)=>{
-    const days = Math.floor((Date.now()-ts)/86400000);
-    const cls = days<=3 ? 'green' : days<=5 ? 'yellow' : 'red';
-    return `<span class="badge ${cls}">${days}d</span>`;
-  };
-
-  const lineCount = (v)=> v ? v.split('\\n').length : 0;
-
-  const updateCount = (which)=>{
-    const txt = el(which+'_text').value;
-    const count = Math.min(lineCount(txt), MAX_LINES);
-    el(which+'_count').textContent = count + ' / ' + MAX_LINES + ' lines';
-  };
-
-  function handleFiles(which, files){
-    const arr = Array.from(files).slice(0, MAX_FILES);
-    if(files.length > MAX_FILES) alert('Only 3 images allowed. Extra files ignored.');
-    const thumbs = el(which+'_thumbs');
-    thumbs.innerHTML = '';
-    const main = el(which+'_main');
-    main.innerHTML = '<div class="dim">Preparing preview…</div>';
-    arr.forEach((f,idx)=>{
-      const r = new FileReader();
-      r.onload = (e)=>{
-        const url = e.target.result;
-        const img = new Image();
-        img.src = url;
-        img.onclick = ()=> selectMain(which, url, img);
-        if(idx === 0) selectMain(which, url);
-        thumbs.appendChild(img);
-        if(idx === 0) img.classList.add('sel');
-      };
-      r.readAsDataURL(f);
-    });
-  }
-
-  function selectMain(which, url, thumbEl){
-    const main = el(which+'_main');
-    main.innerHTML = '';
-    const big = new Image();
-    big.src = url;
-    main.appendChild(big);
-    const thumbs = el(which+'_thumbs').querySelectorAll('img');
-    thumbs.forEach(t=>t.classList.remove('sel'));
-    if(thumbEl) thumbEl.classList.add('sel');
-  }
-
-  function saveLocal(){
-    const leftImgs = Array.from(el('left_thumbs').querySelectorAll('img')).map(i=>i.src).slice(0,3);
-    const rightImgs = Array.from(el('right_thumbs').querySelectorAll('img')).map(i=>i.src).slice(0,3);
-    const data = {
-      id: 'h2h'+Date.now(),
-      title: el('h2h_title').value.trim(),
-      left: {
-        main: el('left_main').querySelector('img')?.src || null,
-        imgs: leftImgs,
-        text: el('left_text').value.split('\\n').slice(0,MAX_LINES).join('\\n')
+/* -------------- Demo Data (stored in localStorage) -------------- */
+const LS_KEY = "gripetime_data_v1";
+function loadDB(){
+  const raw = localStorage.getItem(LS_KEY);
+  if(raw) return JSON.parse(raw);
+  // Seed with one example gripe
+  const now = Date.now() - (1000*60*60*24*2); // 2 days ago = green
+  const db = {
+    gripes: [{
+      id: "g1",
+      title: "Example Gripe: Left the dishes!",
+      createdAt: now,
+      status: "Active",
+      griper: {
+        username: "MarkG",
+        text: "I asked three times for the dishes to be cleaned. Photos included.",
+        photos: [], avatarIndex: 0
       },
-      right: {
-        main: el('right_main').querySelector('img')?.src || null,
-        imgs: rightImgs,
-        text: el('right_text').value.split('\\n').slice(0,MAX_LINES).join('\\n')
+      gripee: {
+        username: "SamR",
+        text: "Busy week—planned to do it tonight. See my response.",
+        photos: [], avatarIndex: 1
       },
-      createdAt: Date.now(),
-      status: 'Active'
-    };
-    const list = JSON.parse(localStorage.getItem('gt_h2h_stage1')||'[]');
-    list.unshift(data);
-    localStorage.setItem('gt_h2h_stage1', JSON.stringify(list));
-    alert('Saved locally! See it below in the Saved list.');
-    renderList();
-    clearInputs();
-  }
+      votes: { griperCount: 1, gripeeCount: 0 },
+      votedBy: {} // map of browserId: choice (prevents repeat votes per browser)
+    }]
+  };
+  localStorage.setItem(LS_KEY, JSON.stringify(db));
+  return db;
+}
+function saveDB(db){ localStorage.setItem(LS_KEY, JSON.stringify(db)); }
 
-  function clearInputs(){
-    ['left','right'].forEach(which=>{
-      el(which+'_files').value = '';
-      el(which+'_thumbs').innerHTML = '';
-      el(which+'_main').innerHTML = 'Upload up to 3 photos';
-      el(which+'_text').value = '';
-      updateCount(which);
-    });
-    el('h2h_title').value = '';
-  }
+/* -------------- Helpers -------------- */
+function ageColor(days){
+  if(days>=1 && days<=3) return "age-green";
+  if(days>=4 && days<=5) return "age-yellow";
+  if(days>5) return "age-red";
+  return "";
+}
+function daysOld(ts){ return Math.floor( (Date.now()-ts) / (1000*60*60*24) ); }
+function browserId(){
+  let id = localStorage.getItem("gripetime_browser_id");
+  if(!id){ id = Math.random().toString(36).slice(2); localStorage.setItem("gripetime_browser_id", id); }
+  return id;
+}
 
-  function renderList(){
-    const box = el('saved_list');
-    const list = JSON.parse(localStorage.getItem('gt_h2h_stage1')||'[]');
-    if(list.length===0){ box.innerHTML = '<div class="dim">No items yet.</div>'; return; }
-    box.innerHTML = list.map(item=>`
-      <div class="item">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div class="title">${item.title || '(Untitled)'}</div>
-          <div>${ageBadge(item.createdAt)} <span class="badge">${item.status}</span></div>
+/* -------------- Register demo -------------- */
+document.getElementById("regForm")?.addEventListener("submit", (e)=>{
+  e.preventDefault();
+  alert("Registered (demo). In a full version we’ll save to a database.");
+});
+
+/* -------------- Gripes list -------------- */
+function renderList(){
+  const ul = document.getElementById("gripesList");
+  const db = loadDB();
+  ul.innerHTML = "";
+  db.gripes.forEach(g=>{
+    const li = document.createElement("li");
+    const d = daysOld(g.createdAt);
+    li.className = "card " + ageColor(d);
+    li.innerHTML = `
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+        <div>
+          <strong>${g.title}</strong> — <em>${g.status}</em>
+          <div class="muted">Age: ${d} day(s)</div>
         </div>
-        <div class="spacer"></div>
-        <div class="dim">Saved ${fmt(item.createdAt)}</div>
-        <div class="spacer"></div>
-        <a class="link" onclick="GT_read('${item.id}')">Read</a>
-      </div>
-    `).join('');
-  }
-
-  function readView(id){
-    const list = JSON.parse(localStorage.getItem('gt_h2h_stage1')||'[]');
-    const item = list.find(x=>x.id===id);
-    const panel = (title, main, text)=>`
-      <div class="card">
-        <div class="h2">${title}</div>
-        <div class="main">${main ? '<img src="'+main+'" />' : 'No photo'}</div>
-        <div class="spacer"></div>
-        <pre style="white-space:pre-wrap">${(text||'').trim()}</pre>
-      </div>`;
-    el('read_view').style.display = 'block';
-    el('read_view').innerHTML = `
-      <div class="h2">${item.title || '(Untitled)'} — <span class="dim">${new Date(item.createdAt).toLocaleString()}</span></div>
-      <div class="grid">
-        ${panel('Griper', item.left.main, item.left.text)}
-        ${panel('Gripee', item.right.main, item.right.text)}
-      </div>
-      <div class="row" style="margin-top:8px">
-        <button class="btn secondary" onclick="GT_back()">Back</button>
+        <button class="btn" data-id="${g.id}">Read Gripe</button>
       </div>
     `;
-    window.scrollTo({top:0, behavior:'smooth'});
-  }
+    ul.appendChild(li);
+  });
+  ul.querySelectorAll("button").forEach(b=>{
+    b.addEventListener("click", ()=>go("#/gripe/"+b.dataset.id));
+  });
+}
 
-  // Expose small helpers on window for inline onclick
-  window.GT_read = readView;
-  window.GT_back = ()=>{ el('read_view').style.display='none'; };
+/* -------------- Gripe details + Head-to-Head -------------- */
+function avatarEl(i){ return `<img class="avatar" src="https://placehold.co/96x96?text=A${i}" alt="Avatar"/>`; }
 
-  // Bind events
-  el('left_files').addEventListener('change', (e)=>handleFiles('left', e.target.files));
-  el('right_files').addEventListener('change', (e)=>handleFiles('right', e.target.files));
-  el('left_text').addEventListener('input', ()=>updateCount('left'));
-  el('right_text').addEventListener('input', ()=>updateCount('right'));
-  el('save_btn').addEventListener('click', saveLocal);
-  el('clear_btn').addEventListener('click', clearInputs);
+function sideHTML(side, sideKey, enableVote, voted){
+  const pics = (side.photos||[]).slice(0,3).map(u=>`<img src="${u}" style="max-width:160px;border-radius:8px">`).join("");
+  const avatar = (side.avatarIndex!=null) ? `<img class="avatar selected" src="https://placehold.co/96x96?text=A${side.avatarIndex}" alt="Avatar"/>` : "";
+  return `
+    <div class="card">
+      <h3 style="margin-top:0">${side.username}</h3>
+      ${avatar || pics || `<div class="muted">No images</div>`}
+      <p style="white-space:pre-wrap">${side.text||""}</p>
+      ${enableVote ? `<button class="btn" data-vote="${sideKey}" ${voted?"disabled":""}>Vote ${sideKey==="griper"?"Griper":"Gripee"}</button>` : ``}
+    </div>
+  `;
+}
 
-  updateCount('left'); updateCount('right');
+function renderGripe(id){
+  const box = document.getElementById("gripeBox");
+  const db = loadDB();
+  const g = db.gripes.find(x=>x.id===id);
+  if(!g){ box.innerHTML = `<p>Not found.</p>`; show("gripe"); return; }
+
+  const active = g.status === "Active";
+  const me = browserId();
+  const already = g.votedBy?.[me];
+
+  box.innerHTML = `
+    <h2>${g.title}</h2>
+    <div class="grid2">
+      ${sideHTML(g.griper, "griper", active, already)}
+      ${sideHTML(g.gripee, "gripee", active, already)}
+    </div>
+
+    ${active ? `
+    <div style="margin-top:14px" class="card">
+      <strong>Rate this Gripe: </strong>
+      <span class="stars">
+        ${[1,2,3,4,5].map(s=>`<button data-star="${s}" class="${(g.tmpStars||5)===s?"on":""}">${s}★</button>`).join(" ")}
+      </span>
+      <span class="muted">Pick 1–5 stars, then click a Vote button above.</span>
+    </div>` : `
+    <div class="card" style="margin-top:14px"><em>Resolved — voting closed.</em></div>`}
+
+    <div style="margin-top:14px">
+      <strong>Griper votes:</strong> ${g.votes?.griperCount||0}
+      &nbsp;|&nbsp;
+      <strong>Gripee votes:</strong> ${g.votes?.gripeeCount||0}
+    </div>
+
+    <p><a href="#/gripes">← Back to list</a></p>
+  `;
+  show("gripe");
+
+  // stars
+  box.querySelectorAll('[data-star]').forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      g.tmpStars = Number(btn.dataset.star);
+      saveDB(db);
+      renderGripe(id);
+    });
+  });
+
+  // voting
+  box.querySelectorAll('[data-vote]').forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      if(!active) return;
+      const choice = btn.dataset.vote; // griper | gripee
+      const me = browserId();
+      if(!g.votedBy) g.votedBy = {};
+      if(g.votedBy[me]) return; // already voted
+      g.votedBy[me] = { choice, stars: g.tmpStars||5 };
+      if(choice==="griper") g.votes.griperCount = (g.votes.griperCount||0)+1;
+      else g.votes.gripeeCount = (g.votes.gripeeCount||0)+1;
+      saveDB(db);
+      renderGripe(id);
+      alert("Vote recorded (demo).");
+    });
+  });
+}
+
+/* -------------- Admin demo -------------- */
+document.getElementById("toggleActiveBtn")?.addEventListener("click", ()=>{
+  const db = loadDB(); const g=db.gripes[0];
+  g.status = (g.status==="Active") ? "Resolved" : "Active";
+  saveDB(db);
+  alert("Status is now: " + g.status);
   renderList();
-})();
+});
+document.getElementById("resetVotesBtn")?.addEventListener("click", ()=>{
+  const db = loadDB(); const g=db.gripes[0];
+  g.votes = {griperCount:0, gripeeCount:0}; g.votedBy = {};
+  saveDB(db);
+  alert("Votes reset.");
+  renderList();
+});
+
+/* -------------- Initial paint -------------- */
+renderList();
+show( (location.hash.replace("#/","")||"home").startsWith("gripe/") ? "gripe" : (location.hash.replace("#/","")||"home") );
 </script>
 </body>
 </html>
